@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 
-from huggingnft.huggan_mixin import HugGANModelHubMixin
+from huggingnft.huggingnft.huggan_mixin import HugGANModelHubMixin
 from huggingnft import TEMPLATE_CYCLEGAN_CARD_PATH
 
 

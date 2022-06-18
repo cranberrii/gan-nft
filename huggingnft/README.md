@@ -51,8 +51,8 @@ python huggingnft/lightweight_gan/generate_interpolation.py --collection_name cr
 #### Image
 
 ```python
-from huggingnft.lightweight_gan.train import timestamped_filename
-from huggingnft.lightweight_gan.lightweight_gan import load_lightweight_model
+from huggingnft.huggingnft.lightweight_gan import timestamped_filename
+from huggingnft.huggingnft.lightweight_gan import load_lightweight_model
 
 collection_name = "cyberkongz"
 nrows = 8
@@ -70,8 +70,8 @@ image_saved_path, generated_image = model.generate_app(
 #### Interpolation
 
 ```python
-from huggingnft.lightweight_gan.train import timestamped_filename
-from huggingnft.lightweight_gan.lightweight_gan import load_lightweight_model
+from huggingnft.huggingnft.lightweight_gan import timestamped_filename
+from huggingnft.huggingnft.lightweight_gan import load_lightweight_model
 
 collection_name = "cyberkongz"
 nrows = 1

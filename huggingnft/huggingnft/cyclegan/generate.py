@@ -14,10 +14,10 @@ from torchvision.utils import save_image, make_grid
 
 from torch.utils.data import DataLoader
 
-from huggingnft.cyclegan.cyclegan import GeneratorResNet, Discriminator
-from huggingnft.cyclegan.cyclegan import weights_init_normal
+from huggingnft.huggingnft.cyclegan.cyclegan import GeneratorResNet, Discriminator
+from huggingnft.huggingnft.cyclegan.cyclegan import weights_init_normal
 
-from huggingnft.cyclegan.utils import ReplayBuffer, LambdaLR
+from huggingnft.huggingnft.cyclegan.utils import ReplayBuffer, LambdaLR
 
 from datasets import load_dataset
 
@@ -28,8 +28,8 @@ from huggingface_hub.hf_api import HfApi
 import json
 from torchvision import transforms as T
 from huggan.pytorch.cyclegan.modeling_cyclegan import GeneratorResNet
-from huggingnft.lightweight_gan.train import timestamped_filename
-from huggingnft.lightweight_gan.lightweight_gan import Generator, LightweightGAN, evaluate_in_chunks, Trainer
+from huggingnft.huggingnft.lightweight_gan.train import timestamped_filename
+from huggingnft.huggingnft.lightweight_gan.lightweight_gan import Generator, LightweightGAN, evaluate_in_chunks, Trainer
 from huggingface_hub import hf_hub_download, file_download
 import math
 

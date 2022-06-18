@@ -24,7 +24,7 @@ from torchvision import transforms
 from torchvision.utils import save_image
 from kornia.filters import filter2d
 
-from huggingnft.lightweight_gan.diff_augment import DiffAugment
+from diff_augment import DiffAugment
 
 from tqdm import tqdm
 from einops import rearrange, reduce, repeat
@@ -34,7 +34,7 @@ from datasets import load_dataset
 from accelerate import Accelerator, DistributedDataParallelKwargs
 from huggingface_hub import hf_hub_download, create_repo, HfFolder, whoami, upload_file, file_download
 
-from huggingnft import TEMPLATE_LIGHTWEIGHT_CARD_PATH
+# from huggingnft import TEMPLATE_LIGHTWEIGHT_CARD_PATH
 from huggingnft.huggan_mixin import HugGANModelHubMixin
 from typing import Optional
 
@@ -45,6 +45,7 @@ EXTS = ['jpg', 'jpeg', 'png']
 PYTORCH_WEIGHTS_NAME = 'model.pt'
 CONFIG_NAME = 'config.json'
 TRAINING_CONFIG_NAME = 'training_config.json'
+TEMPLATE_LIGHTWEIGHT_CARD_PATH = Path(__file__).parent.absolute() / 'cards' / 'LIGHTWEIGHT_MODEL_README.md'
 
 
 # helpers
@@ -1036,7 +1037,7 @@ class Trainer():
 
         self.push_to_hub = push_to_hub
         self.organization_name = organization_name
-        self.repo_name = get_full_repo_name(self.name, self.organization_name)
+        # self.repo_name = get_full_repo_name(self.name, self.organization_name)
         if self.push_to_hub:
             self.repo_url = create_repo(self.repo_name, exist_ok=True)
 

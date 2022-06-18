@@ -1,17 +1,17 @@
 import argparse
-from huggingnft.lightweight_gan.train import timestamped_filename
-from huggingnft.lightweight_gan.lightweight_gan import load_lightweight_model
+from huggingnft.huggingnft.lightweight_gan.train import timestamped_filename
+from huggingnft.huggingnft.lightweight_gan.lightweight_gan import load_lightweight_model
 
 
 def main(args):
     model = load_lightweight_model(f"huggingnft/{args.collection_name}")
-    image_saved_path, generated_image = model.generate_app(
+    gif_saved_path = model.generate_interpolation(
         num=timestamped_filename(),
-        nrow=args.nrows,
-        checkpoint=-1,
-        types=args.generation_type
+        num_image_tiles=args.nrows,
+        num_steps=args.num_steps,
+        save_frames=False
     )
-    print(f"Resulting image saved here: {image_saved_path}")
+    print(f"Resulting gif saved here: {gif_saved_path}")
 
 
 if __name__ == "__main__":
@@ -24,11 +24,10 @@ if __name__ == "__main__":
         help="Number of rows in the grid",
     )
     parser.add_argument(
-        "--generation_type",
-        type=str,
-        default="default",
-        choices=["default", "ema"],
-        help="Generation type: default or ema",
+        "--num_steps",
+        type=int,
+        default=100,
+        help="Number of steps to generate",
     )
     args = parser.parse_args()
     main(args)
