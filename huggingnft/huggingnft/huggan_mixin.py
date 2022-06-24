@@ -5,7 +5,7 @@ import os
 
 from huggingface_hub import PyTorchModelHubMixin, HfApi, HfFolder, Repository
 
-from huggingnft import TEMPLATE_MODEL_CARD_PATH
+from huggingnft.huggingnft import TEMPLATE_MODEL_CARD_PATH
 
 
 class HugGANModelHubMixin(PyTorchModelHubMixin):

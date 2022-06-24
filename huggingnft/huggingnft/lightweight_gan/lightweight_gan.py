@@ -35,7 +35,7 @@ from accelerate import Accelerator, DistributedDataParallelKwargs
 from huggingface_hub import hf_hub_download, create_repo, HfFolder, whoami, upload_file, file_download
 
 # from huggingnft import TEMPLATE_LIGHTWEIGHT_CARD_PATH
-from huggingnft.huggan_mixin import HugGANModelHubMixin
+from huggingnft.huggingnft.huggan_mixin import HugGANModelHubMixin
 from typing import Optional
 
 # constants
@@ -1361,6 +1361,8 @@ class Trainer():
 
             if self.steps % self.evaluate_every == 0 or (self.steps % 100 == 0 and self.steps < 20000):
                 self.evaluate(floor(self.steps / self.evaluate_every), num_image_tiles=self.num_image_tiles)
+
+                print(f"using torch device: {self.accelerator.device}")
 
             if exists(self.calculate_fid_every) and self.steps % self.calculate_fid_every == 0 and self.steps != 0:
                 num_batches = math.ceil(self.calculate_fid_num_images / self.batch_size)

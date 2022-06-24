@@ -4,7 +4,7 @@ from retry.api import retry_call
 from tqdm import tqdm
 from datetime import datetime
 from pathlib import Path
-from huggingnft.lightweight_gan.lightweight_gan import Trainer, NanException
+from huggingnft.huggingnft.lightweight_gan.lightweight_gan import Trainer, NanException
 
 import torch
 import torch.multiprocessing as mp
@@ -103,7 +103,7 @@ def train_from_folder(
         calculate_fid_every=None,
         calculate_fid_num_images=12800,
         clear_fid_cache=False,
-        seed=42,
+        seed=555,
         mixed_precision="no",
         show_progress=False,
         wandb=False,
