@@ -1,5 +1,6 @@
 import os
 import json
+import sys
 import tempfile
 from random import random
 import math
@@ -1624,6 +1625,10 @@ class Trainer():
     def save(self, num):
         save_data = {
             'GAN': self.GAN.state_dict(),
+            'G_opt_dict': self.GAN.G_opt.state_dict(),
+            'D_opt_dict': self.GAN.D_opt.state_dict(),
+            # 'G_loss':None,
+            # 'D_loss':None,
         }
 
         torch.save(save_data, self.model_name(num))
@@ -1644,10 +1649,26 @@ class Trainer():
 
         # self.steps = name * self.save_every
 
+        print(f'continuing from previous epoch - {model_path} !!')
+
         load_data = torch.load(model_path, map_location=torch.device('cpu'))
 
         try:
             self.GAN.load_state_dict(load_data['GAN'])
+            self.GAN.G_opt.load_state_dict(load_data['G_opt_dict'])
+            self.GAN.D_opt.load_state_dict(load_data['D_opt_dict'])
+
+            # print model's state_dict
+            for param_tensor in self.GAN.state_dict():
+                print(f"{param_tensor} \t {self.GAN.state_dict()[param_tensor].size()}")
+            # optimizer's state_dict - state, param_groups
+            for var_name in self.GAN.G_opt.state_dict():
+                if var_name == 'param_groups':
+                    print(f"G_opt: {var_name} \t {self.GAN.G_opt.state_dict()[var_name]}")
+            for var_name in self.GAN.D_opt.state_dict():
+                if var_name == 'param_groups':
+                    print(f"D_opt: {var_name} \t {self.GAN.D_opt.state_dict()[var_name]}")
+
         except Exception as e:
             print(
                 'unable to load save model. please try downgrading the package to the version specified by the saved model')
